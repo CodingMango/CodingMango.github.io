@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth scroll-pt-16 md:scroll-pt-20">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Jabbar Khan | Academic Portfolio</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%234282B1%22/><text x=%2250%22 y=%2272%22 font-family=%22Georgia, serif%22 font-size=%2255%22 font-weight=%22bold%22 fill=%22%23EAE5D9%22 text-anchor=%22middle%22>JK</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        darkbase: '#0f172a', // Deep slate for dark mode background
+                        darkcard: '#1e293b', // Slightly lighter slate for cards
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+            animation: none;
+            mix-blend-mode: normal;
+        }
+
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        /* Hardware Acceleration Layering */
+        #eceCanvas {
+            /* Tells the browser this element will change constantly */
+            will-change: transform, opacity; 
+            /* Forces the browser to put the canvas on its own 3D GPU layer */
+            transform: translateZ(0); 
+            /* Ensures it never intercepts mouse clicks meant for buttons */
+            pointer-events: none; 
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        
+        /* Subtle animated gradient background for the hero section to make glass pop */
+        .hero-bg {
+            background: linear-gradient(-45deg, #f8fafc, #e2e8f0, #f1f5f9, #ffffff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        .dark .hero-bg {
+            background: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #020617);
+            background-size: 400% 400%;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-darkbase text-slate-800 dark:text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-primary-500 selection:text-white transition-colors duration-300">
+    <nav class="fixed w-full bg-white/80 dark:bg-darkbase/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-50 shadow-sm transition-colors duration-300">        
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-bold text-xl tracking-tight text-slate-900 dark:text-white">A.J. Khan</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                    <a href="#education" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Education</a>
+                    <a href="#projects" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Projects</a>
+                    <a href="#achievements" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Achievements</a>
+                    <a href="#sports" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Sports</a>
+                    <a href="#leadership" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Leadership</a>
+                    
+                    <button onclick="toggleDarkMode(event)" class="ml-4 p-2 text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 focus:outline-none transition-colors" title="Toggle Dark Mode">
+                        <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button onclick="toggleDarkMode(event)" aria-label="Toggle Dark Mode" title="Toggle Dark Mode" class="mr-4 p-2 text-slate-600 dark:text-slate-300 focus:outline-none text-xl">
+                        <i id="mobile-theme-icon" class="fa-solid fa-moon"></i>
+                    </button>
+                    <button id="mobile-menu-btn" aria-label="Open Mobile Menu" aria-expanded="false" class="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white focus:outline-none text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-darkcard border-b border-slate-200 dark:border-slate-800 shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#education" class="block px-3 py-3 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary-600 dark:hover:text-primary-400">Education</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary-600 dark:hover:text-primary-400">Projects</a>
+                <a href="#achievements" class="block px-3 py-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary-600 dark:hover:text-primary-400">Achievements</a>
+                <a href="#sports" class="block px-3 py-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary-600 dark:hover:text-primary-400">Sports</a>
+                <a href="#leadership" class="block px-3 py-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary-600 dark:hover:text-primary-400">Leadership</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-bg relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 w-full mx-auto overflow-hidden min-h-[85vh] flex flex-col justify-center transition-colors duration-500">
+        <canvas id="eceCanvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none"></canvas>
+        
+        <div class="text-center max-w-3xl mx-auto relative z-10 bg-white/20 dark:bg-darkcard/50 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-2xl border border-white/60 dark:border-slate-600/50">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 font-serif">
+                Abdul Jabbar Khan
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-700 dark:text-slate-300 mb-6 font-light">
+                Undergraduate Researcher &amp; Engineer<br>
+                <span class="text-lg font-medium text-primary-600 dark:text-primary-400">B.Tech Electronics &amp; Communication Engineering</span>
+            </p>
+            <p class="text-base text-slate-700 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                RGUKT Nuzvid (Expected 2028). Passionate about hardware-software interfacing, mathematical modelling, and low-level system design. Looking for opportunities to contribute to rigorous academic research and advanced engineering projects.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-sm font-medium">
+                <a href="./jabbarKhan_cv.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-2.5 border border-transparent rounded-lg shadow-md bg-primary-600 text-white hover:bg-primary-700 hover:-translate-y-1 transition-all duration-300">
+                    <i class="fa-solid fa-file-pdf mr-2 text-lg"></i> Download CV
+                </a>
+                <a href="mailto:jabbarkhan562005@gmail.com" class="inline-flex items-center px-5 py-2.5 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm bg-white/80 dark:bg-darkcard/80 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 hover:-translate-y-1 transition-all duration-300">
+                    <i class="fa-solid fa-envelope mr-2 text-lg"></i> Email Me
+                </a>
+                <a href="https://linkedin.com/in/jabbar-khan-abdul" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-2.5 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm bg-white/80 dark:bg-darkcard/80 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 hover:-translate-y-1 transition-all duration-300">
+                    <i class="fa-brands fa-linkedin mr-2 text-lg text-[#0A66C2] dark:text-[#3b82f6]"></i> LinkedIn
+                </a>
+                <a href="https://github.com/CodingMango" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-2.5 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm bg-white/80 dark:bg-darkcard/80 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 hover:-translate-y-1 transition-all duration-300">
+                    <i class="fa-brands fa-github mr-2 text-lg"></i> GitHub
+                </a>
+            </div>
+            <div class="mt-8 text-sm font-medium text-slate-600 dark:text-slate-400 bg-white/50 dark:bg-slate-800/50 inline-block px-4 py-1.5 rounded-full backdrop-blur-sm border border-white/30 dark:border-slate-600/30">
+                <i class="fa-solid fa-phone mr-1"></i> +91-7981994719
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white dark:bg-darkcard border-y border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white font-serif">Core Competencies & Coursework</h2>
+                <div class="h-1 w-20 bg-primary-500 mx-auto mt-4 rounded-full"></div>
+                <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm">A foundational overview of my academic subjects and technical proficiencies, establishing the baseline of my engineering toolkit.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-slate-50 dark:bg-darkbase rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-6 flex items-center">
+                        <i class="fa-solid fa-book-open mr-3 text-primary-500"></i> Key Academic Subjects
+                    </h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="px-3 py-1.5 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 shadow-sm">Engineering Mathematics</span>
+                        <span class="px-3 py-1.5 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 shadow-sm">Engineering Physics</span>
+                        <span class="px-3 py-1.5 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 shadow-sm">Data Structures (C)</span>
+                        <span class="px-3 py-1.5 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 shadow-sm">OOP (C++)</span>
+                        <span class="px-3 py-1.5 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 shadow-sm">Electronic Devices & Circuits</span>
+                        <span class="px-3 py-1.5 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 shadow-sm">Signals and Systems</span>
+                    </div>
+                </div>
+                
+                <div class="bg-slate-50 dark:bg-darkbase rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-6 flex items-center">
+                        <i class="fa-solid fa-microchip mr-3 text-primary-500"></i> Technical Arsenal
+                    </h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="px-3 py-1.5 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg text-xs font-medium text-primary-700 dark:text-primary-400 shadow-sm">C</span>
+                        <span class="px-3 py-1.5 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg text-xs font-medium text-primary-700 dark:text-primary-400 shadow-sm">C++</span>
+                        <span class="px-3 py-1.5 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg text-xs font-medium text-primary-700 dark:text-primary-400 shadow-sm">Python</span>
+                        <span class="px-3 py-1.5 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg text-xs font-medium text-primary-700 dark:text-primary-400 shadow-sm">VPython</span>
+                        <span class="px-3 py-1.5 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg text-xs font-medium text-primary-700 dark:text-primary-400 shadow-sm">Vivado</span>
+                        <span class="px-3 py-1.5 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg text-xs font-medium text-primary-700 dark:text-primary-400 shadow-sm">Git/GitHub</span>
+                        <span class="px-3 py-1.5 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg text-xs font-medium text-primary-700 dark:text-primary-400 shadow-sm">Hardware Interfacing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white font-serif mb-2">Academic Trajectory</h2>
+            <div class="h-1 w-20 bg-primary-500 mt-4 mb-4 rounded-full"></div>
+            <p class="text-slate-600 dark:text-slate-400 max-w-3xl text-sm">
+                This section details my formal educational background. The accompanying visualization demonstrates a consistent record of high academic achievement from secondary education through my current undergraduate studies.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 dark:before:via-slate-700 before:to-transparent">
+                
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-darkbase bg-primary-500 text-white shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-110">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-darkcard p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition hover:shadow-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white">B.Tech ECE</h3>
+                            <span class="text-xs font-bold text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 px-2 py-1 rounded">Exp. 2028</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">RGUKT - Nuzvid</p>
+                        <div class="inline-block px-3 py-1 bg-slate-50 dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700">
+                            <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">CGPA: 8.71 / 10.0 <span class="text-xs font-normal text-slate-500 dark:text-slate-400">(3 semesters)</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-darkbase bg-slate-400 dark:bg-slate-600 text-white shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-110">
+                        <i class="fa-solid fa-school"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-darkcard p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition hover:shadow-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white">Pre-University (MPC)</h3>
+                            <span class="text-xs font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">2022 - 2024</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">RGUKT - Nuzvid</p>
+                        <div class="inline-block px-3 py-1 bg-slate-50 dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700">
+                            <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">CGPA: 9.79 / 10.0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-darkbase bg-slate-400 dark:bg-slate-600 text-white shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-110">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-darkcard p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition hover:shadow-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white">SSC</h3>
+                            <span class="text-xs font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">2021 - 2022</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">MPL HS BOYS - Paradesampeta</p>
+                        <div class="inline-block px-3 py-1 bg-slate-50 dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700">
+                            <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Percentage: 96.5%</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bg-white dark:bg-darkcard p-6 md:p-8 rounded-2xl shadow-md border border-slate-200 dark:border-slate-700 transition">
+                <h3 class="text-center text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">Performance Consistency</h3>
+                <div class="chart-container">
+                    <canvas id="academicChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 bg-white dark:bg-darkcard border-y border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white font-serif mb-2">Independent Projects & Research</h2>
+                <div class="h-1 w-20 bg-primary-500 mt-4 mb-4 rounded-full"></div>
+                <p class="text-slate-600 dark:text-slate-400 max-w-3xl text-sm">
+                    This section outlines practical applications of my theoretical knowledge. It highlights my ability to bridge hardware and software, manage low-level memory, and utilize object-oriented programming for complex mathematical and physical simulations.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
+                    <div class="p-8 flex-grow">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fa-solid fa-laptop-code text-2xl text-primary-600 dark:text-primary-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">3D Animation for Physics</h3>
+                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-6 uppercase tracking-wider">Learn-VPython</p>
+                        <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-3 mb-6 list-none">
+                            <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Engineered interactive Jupyter Notebooks using VPython to mathematically model and visualize 3D physical simulations.</li>
+                            <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Demonstrated deep proficiency in vector calculus, classical kinematics modelling, and OOP for scientific visualization.</li>
+                        </ul>
+                    </div>
+                    <div class="px-8 py-5 bg-white dark:bg-darkcard border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                        <div class="flex gap-2">
+                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">Python</span>
+                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">VPython</span>
+                        </div>
+                        <a href="https://github.com/CodingMango/Learn-VPython" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 text-sm font-bold flex items-center transition-colors">
+                            Repo <i class="fa-solid fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
+                    <div class="p-8 flex-grow">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fa-solid fa-microchip text-2xl text-primary-600 dark:text-primary-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Cryptographic Morse Decoder</h3>
+                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-6 uppercase tracking-wider">Hardware-Interfaced</p>
+                        <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-3 mb-6 list-none">
+                            <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Designed hardware to intercept, decode, and translate hardware-generated (pushbutton) Morse code signals in real-time.</li>
+                            <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Demonstrated advanced capabilities in low-level memory management via C++.</li>
+                        </ul>
+                    </div>
+                    <div class="px-8 py-5 bg-white dark:bg-darkcard border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                        <div class="flex gap-2">
+                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">C++</span>
+                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">Hardware</span>
+                        </div>
+                        <a href="https://github.com/CodingMango/Morse_Decoder" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 text-sm font-bold flex items-center transition-colors">
+                            Repo <i class="fa-solid fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
+                    <div class="p-8 flex-grow">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fa-solid fa-satellite-dish text-2xl text-primary-600 dark:text-primary-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Morse Encoder</h3>
+                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-6 uppercase tracking-wider">Hardware-Interfaced</p>
+                        <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-3 mb-6 list-none">
+                            <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Complementary system to the decoder, designed to encode textual input into physical, hardware-transmitted Morse signals.</li>
+                            <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Further solidified understanding of C++ interfacing with physical electronic components.</li>
+                        </ul>
+                    </div>
+                    <div class="px-8 py-5 bg-white dark:bg-darkcard border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                        <div class="flex gap-2">
+                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">C++</span>
+                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">Hardware</span>
+                        </div>
+                        <a href="https://github.com/CodingMango/Morse_Encoder" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 text-sm font-bold flex items-center transition-colors">
+                            Repo <i class="fa-solid fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white font-serif mb-2">Scholastic Achievements</h2>
+            <div class="h-1 w-20 bg-primary-500 mt-4 mb-4 rounded-full"></div>
+            <p class="text-slate-600 dark:text-slate-400 max-w-3xl text-sm">
+                Recognition of academic excellence through national-level scholarships and rigorous certification programs from premier institutions.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white dark:bg-darkcard p-8 rounded-2xl border-l-4 border-primary-500 shadow-md hover:shadow-xl transition-shadow">
+                <div class="flex items-start">
+                    <div class="bg-primary-50 dark:bg-primary-900/30 p-3 rounded-full mr-5">
+                        <i class="fa-solid fa-medal text-2xl text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">NPTEL Silver Medalist (2025)</h3>
+                        <p class="text-sm font-bold text-slate-500 dark:text-slate-400 mb-3">IISc Bangalore</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Achieved a 79% in the <em>"Mathematical Foundations for Machine Learning"</em> certification. Demonstrated strong foundational knowledge in Linear Algebra, Probability, and Multivariable Calculus.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-darkcard p-8 rounded-2xl border-l-4 border-primary-500 shadow-md hover:shadow-xl transition-shadow">
+                <div class="flex items-start">
+                    <div class="bg-primary-50 dark:bg-primary-900/30 p-3 rounded-full mr-5">
+                        <i class="fa-solid fa-trophy text-2xl text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Reliance Foundation Undergraduate Scholar</h3>
+                        <p class="text-sm font-bold text-slate-500 dark:text-slate-400 mb-3">2024</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Awarded this highly competitive national merit-cum-means scholarship for exceptional academic performance and aptitude.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sports" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200 dark:border-academic-800 transition-colors duration-300">
+        <div class="mb-10 text-center">
+            <h2 class="text-3xl font-bold text-academic-900 dark:text-white font-serif mb-2">Sports & Athletics</h2>
+            <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm">
+                Demonstrating discipline, teamwork, and resilience through competitive sports at the SGFI Yoga State Level Competition.
+            </p>
+        </div>
+
+        <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 pt-4 px-4 -mx-4 sm:mx-0 sm:px-0 hide-scrollbar cursor-grab active:cursor-grabbing">
+            
+            <div onclick="openLightbox('https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=1200&q=80')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group relative overflow-hidden rounded-xl shadow-md border border-slate-200 dark:border-academic-800 h-64">
+                <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=800&q=80" alt="Yoga Competition 1" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h4 class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">State Championship</h4>
+                    <p class="text-slate-300 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Demonstrating advanced flexibility and focus.</p>
+                </div>
+            </div>
+
+            <div onclick="openLightbox('https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=1200&q=80')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group relative overflow-hidden rounded-xl shadow-md border border-slate-200 dark:border-academic-800 h-64">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Yoga Competition 2" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h4 class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Team Management</h4>
+                    <p class="text-slate-300 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Leading junior athletes under pressure.</p>
+                </div>
+            </div>
+
+            <div onclick="openLightbox('https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=1200&q=80')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group relative overflow-hidden rounded-xl shadow-md border border-slate-200 dark:border-academic-800 h-64">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Yoga Competition 2" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h4 class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Team Management</h4>
+                    <p class="text-slate-300 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Leading junior athletes under pressure.</p>
+                </div>
+            </div>
+
+            <div onclick="openLightbox('https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=1200&q=80')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group relative overflow-hidden rounded-xl shadow-md border border-slate-200 dark:border-academic-800 h-64">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Yoga Competition 2" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h4 class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Team Management</h4>
+                    <p class="text-slate-300 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Leading junior athletes under pressure.</p>
+                </div>
+            </div>
+
+            </div>
+        
+        <div class="text-center mt-2 md:hidden">
+            <span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-widest"><i class="fa-solid fa-arrows-left-right mr-1"></i> Swipe to explore</span>
+        </div>
+    </section>
+
+    <section id="leadership" class="py-20 bg-slate-100 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white font-serif mb-2">Positions of Responsibility</h2>
+                <div class="h-1 w-20 bg-primary-500 mt-4 mb-4 rounded-full"></div>
+                <p class="text-slate-600 dark:text-slate-400 max-w-3xl text-sm">
+                    Showcasing leadership and a commitment to community welfare.
+                </p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">State-Level Team Manager <span class="text-primary-500 font-normal px-2">|</span> SGFI Yoga</h3>
+                        <span class="text-sm font-bold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 mt-2 md:mt-0 inline-block w-max">2024</span>
+                    </div>
+                    <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-3 list-none">
+                        <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Managed state-level logistical operations, travel coordination, and tournament compliance for junior athletes.</li>
+                        <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Mentored team members on performance execution and resilience, coordinating directly with coaching staff to maintain a disciplined, supportive environment.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Student Representative <span class="text-primary-500 font-normal px-2">|</span> Helping Hands NGO</h3>
+                        <span class="text-sm font-bold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 mt-2 md:mt-0 inline-block w-max">2024 - Present</span>
+                    </div>
+                    <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-3 list-none">
+                        <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Spearheaded a campus-wide micro-donation initiative, delivering weekly motivational addresses to student cohorts to secure funding for economically disadvantaged peers.</li>
+                        <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Co-organised comprehensive health and welfare initiatives, successfully executing campus blood donation and specialised eye-care camps.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Volunteer <span class="text-primary-500 font-normal px-2">|</span> National Service Scheme (NSS)</h3>
+                        <span class="text-sm font-bold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 mt-2 md:mt-0 inline-block w-max">2023 - 2025</span>
+                    </div>
+                    <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-3 list-none">
+                        <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Completed a rigorous two-year Government of India community service mandate.</li>
+                        <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Spearheaded large-scale environmental campus cleaning drives and executed the equitable distribution of essential educational supplies to student cohorts.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-academic-100 dark:bg-academic-900 mt-8 border-t border-slate-300 dark:border-academic-800 transition-colors duration-300">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <i class="fa-solid fa-atom text-3xl text-academic-teal dark:text-academic-purple mb-4"></i>
+            <p class="text-xl md:text-2xl text-academic-800 dark:text-slate-300 font-serif italic mb-4">
+                "What I cannot create, I do not understand."
+            </p>
+            <p class="text-academic-accent dark:text-academic-gold font-bold tracking-wide uppercase text-sm">
+                — Richard Feynman
+            </p>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">
+                Theoretical Physicist
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 dark:bg-black text-slate-300 py-12 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0 text-center md:text-left">
+                <h2 class="text-2xl font-bold text-white font-serif mb-2">Abdul Jabbar Khan</h2>
+                <p class="text-sm text-slate-400">B.Tech ECE, RGUKT Nuzvid</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-6 text-sm">
+                <a href="mailto:jabbarkhan562005@gmail.com" class="hover:text-primary-400 transition-colors flex items-center">
+                    <i class="fa-solid fa-envelope mr-2"></i> jabbarkhan562005@gmail.com
+                </a>
+                <span class="hidden sm:inline text-slate-600">|</span>
+                <span class="flex items-center">
+                    <i class="fa-solid fa-phone mr-2"></i> +91-7981994719
+                </span>
+                <span class="hidden sm:inline text-slate-600">|</span>
+                <a href="https://linkedin.com/in/jabbar-khan-abdul" class="hover:text-primary-400 transition-colors flex items-center">
+                    <i class="fa-brands fa-linkedin mr-2"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 md:top-8 md:right-8 text-white/70 hover:text-white text-4xl focus:outline-none transition-colors" aria-label="Close Fullscreen">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Fullscreen View" class="max-h-[90vh] max-w-[95vw] md:max-w-[90vw] object-contain rounded-lg shadow-2xl scale-95 transition-transform duration-300">
+    </div>
+
+    <script>
+        /* ---------------------------------------------------
+           1. Telegram-Style Dark Mode Toggle (View Transitions) 
+           --------------------------------------------------- */
+        function toggleDarkMode(event) {
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            const icons = [document.getElementById('theme-icon'), document.getElementById('mobile-theme-icon')];
+            icons.forEach(icon => {
+                if(icon) {
+                    icon.style.transition = 'transform 0.5s ease-in-out';
+                    icon.style.transform = isDark ? 'rotate(0deg)' : 'rotate(360deg)';
+                }
+            });
+
+            if (!document.startViewTransition) {
+                applyTheme(!isDark);
+                return;
+            }
+
+            let x = window.innerWidth / 2;
+            let y = window.innerHeight / 2;
+            
+            if (event) {
+                if (event.touches && event.touches.length > 0) {
+                    x = event.touches[0].clientX;
+                    y = event.touches[0].clientY;
+                } else if (event.clientX !== undefined) {
+                    x = event.clientX;
+                    y = event.clientY;
+                }
+            }
+            
+            const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+
+            const transition = document.startViewTransition(() => {
+                applyTheme(!isDark);
+            });
+
+            transition.ready.then(() => {
+                const clipPath = [
+                    `circle(0px at ${x}px ${y}px)`,
+                    `circle(${endRadius}px at ${x}px ${y}px)`
+                ];
+
+                document.documentElement.animate(
+                    { clipPath: clipPath },
+                    { duration: 500, easing: 'ease-in-out', pseudoElement: '::view-transition-new(root)' }
+                );
+            });
+        }
+
+        function applyTheme(makeDark) {
+            const themeIcon = document.getElementById('theme-icon');
+            const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+            
+            if (makeDark) {
+                document.documentElement.classList.add('dark');
+                if(themeIcon) { themeIcon.classList.remove('fa-moon'); themeIcon.classList.add('fa-sun'); }
+                if(mobileThemeIcon) { mobileThemeIcon.classList.remove('fa-moon'); mobileThemeIcon.classList.add('fa-sun'); }
+            } else {
+                document.documentElement.classList.remove('dark');
+                if(themeIcon) { themeIcon.classList.remove('fa-sun'); themeIcon.classList.add('fa-moon'); }
+                if(mobileThemeIcon) { mobileThemeIcon.classList.remove('fa-sun'); mobileThemeIcon.classList.add('fa-moon'); }
+            }
+        }
+
+        /* ---------------------------------------------------
+           2. Upgraded Wave & Satellite Animation Engine
+           --------------------------------------------------- */
+        const canvas = document.getElementById('eceCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let waves = [];
+        let emPulses = [];
+        let satellites = [];
+        let ambientParticles = [];
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // New feature: Ambient Particles for visual goodness
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw(ctx) {
+                const isDark = document.documentElement.classList.contains('dark');
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = isDark ? `rgba(96, 165, 250, ${this.opacity})` : `rgba(59, 130, 246, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        // 1. Radar-Style Carrier Waves (Bold & High Contrast)
+        class Wave {
+            constructor() { this.reset(); }
+            reset() {
+                this.r = 68;
+                this.x = canvas.width / 2;
+                this.y = canvas.height / 2;
+                this.speed = 0.3 + Math.random() * 0.4; // Speed cut in half
+                this.maxR = Math.max(canvas.width, canvas.height);
+            }
+            update() {
+                this.r += this.speed;
+                if (this.r > this.maxR) this.reset(); 
+            }
+            draw(ctx) {
+                const isDark = document.documentElement.classList.contains('dark');
+                let opacity = Math.max(0, 1 - Math.pow(this.r / this.maxR, 2)); 
+                
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                
+                // Softer base colors
+                ctx.strokeStyle = isDark ? `rgba(244, 209, 96, ${opacity * 0.6})` : `rgba(0, 79, 159, ${opacity * 0.4})`;
+                ctx.lineWidth = isDark ? 2.5 : 2.0; 
+                
+                // Wider spacing on dashes
+                ctx.setLineDash([15, 40]);
+                ctx.lineDashOffset = -this.r * 0.2; 
+                
+                if (isDark) {
+                    ctx.shadowBlur = 5; // Reduced glow
+                    ctx.shadowColor = `rgba(244, 209, 96, ${opacity * 0.5})`;
+                }
+
+                ctx.stroke();
+                ctx.setLineDash([]); 
+                ctx.shadowBlur = 0;  
+            }
+        }
+
+        class EMPulse {
+            constructor() { this.reset(); }
+            reset() {
+                this.angle = Math.random() * Math.PI * 2;
+                this.radius = 40; 
+                this.speed = 1.5 + Math.random() * 1.5; 
+                this.amplitude = 8 + Math.random() * 5; 
+                this.frequency = 0.08; 
+                this.length = 150 + Math.random() * 100; 
+                this.phase = Math.random() * Math.PI * 2; 
+                this.maxRadius = Math.max(canvas.width, canvas.height) * 1.5;
+            }
+            update() {
+                this.radius += this.speed;
+                this.phase -= 0.15; 
+                if (this.radius - this.length > this.maxRadius) this.reset();
+            }
+            draw(ctx, cx, cy) {
+                const isDark = document.documentElement.classList.contains('dark');
+                let opacity = Math.max(0, 1 - (this.radius / this.maxRadius));
+                if (opacity <= 0) return;
+
+                ctx.beginPath();
+                ctx.strokeStyle = isDark ? `rgba(167, 139, 250, ${opacity * 0.9})` : `rgba(139, 92, 246, ${opacity * 0.7})`;
+                ctx.lineWidth = 2.5;
+                
+                if (isDark) {
+                    ctx.shadowBlur = 12; 
+                    ctx.shadowColor = `rgba(167, 139, 250, ${opacity * 0.8})`;
+                }
+
+                let startR = Math.max(0, this.radius - this.length);
+                let endR = this.radius;
+
+                for(let r = startR; r <= endR; r += 2) {
+                    let packetPos = (r - startR) / this.length; 
+                    let envelope = Math.sin(packetPos * Math.PI); 
+                    let displacement = Math.sin(r * this.frequency + this.phase) * this.amplitude * envelope;
+                    
+                    let px = cx + Math.cos(this.angle) * r + Math.cos(this.angle + Math.PI/2) * displacement;
+                    let py = cy + Math.sin(this.angle) * r + Math.sin(this.angle + Math.PI/2) * displacement;
+                    
+                    if(r === startR) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                }
+                ctx.stroke();
+                ctx.shadowBlur = 0; 
+            }
+        }
+
+        class Satellite {
+            constructor(orbitRadius, tiltX, tiltY) {
+                this.orbitRadius = orbitRadius; 
+                this.tiltX = tiltX; 
+                this.tiltY = tiltY; 
+                this.angle = Math.random() * Math.PI * 2;
+                this.speed = 0.0015 + Math.random() * 0.001; 
+                this.blinkTimer = 0;
+            }
+
+            get3DPos(theta) {
+                let bx = Math.cos(theta) * this.orbitRadius;
+                let by = Math.sin(theta) * this.orbitRadius;
+                let bz = 0;
+
+                let y1 = by * Math.cos(this.tiltX) - bz * Math.sin(this.tiltX);
+                let z1 = by * Math.sin(this.tiltX) + bz * Math.cos(this.tiltX);
+
+                let x2 = bx * Math.cos(this.tiltY) + z1 * Math.sin(this.tiltY);
+                let z2 = -bx * Math.sin(this.tiltY) + z1 * Math.cos(this.tiltY);
+
+                return { x: x2, y: y1, z: z2 };
+            }
+
+            update() {
+                this.angle += this.speed;
+                this.blinkTimer++;
+            }
+
+            draw(ctx, cx, cy) {
+                const isDark = document.documentElement.classList.contains('dark');
+                const pathColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+
+                let steps = 60;
+                ctx.beginPath();
+                for (let i = 0; i <= steps; i++) {
+                    let t = (i / steps) * Math.PI * 2;
+                    let p = this.get3DPos(t);
+                    if (i === 0) ctx.moveTo(cx + p.x, cy + p.y);
+                    else ctx.lineTo(cx + p.x, cy + p.y);
+                }
+                ctx.strokeStyle = pathColor;
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([4, 4]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                let pos = this.get3DPos(this.angle);
+                let depthScale = 1 + (pos.z / this.orbitRadius) * 0.5; 
+                let satRadius = 4 * depthScale;
+
+                ctx.beginPath();
+                ctx.arc(cx + pos.x, cy + pos.y, satRadius, 0, Math.PI * 2);
+                ctx.fillStyle = isDark ? '#60a5fa' : '#3b82f6';
+                
+                if (isDark) {
+                    ctx.shadowBlur = 10 * depthScale; 
+                    ctx.shadowColor = '#60a5fa';
+                }
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                if (this.blinkTimer % 120 < 60) {
+                    ctx.beginPath();
+                    ctx.arc(cx + pos.x, cy + pos.y, satRadius * 2.5, 0, Math.PI * 2);
+                    ctx.fillStyle = isDark ? `rgba(96, 165, 250, 0.4)` : `rgba(59, 130, 246, 0.3)`;
+                    ctx.fill();
+                }
+            }
+        }
+
+        // Initialize Systems 
+        for (let i = 0; i < 60; i++) ambientParticles.push(new Particle());
+        for (let i = 0; i < 5; i++) setTimeout(() => waves.push(new Wave()), i * 1500);
+        for (let i = 0; i < 4; i++) setTimeout(() => emPulses.push(new EMPulse()), i * 2200);
+        
+        satellites.push(new Satellite(350, Math.PI / 6, Math.PI / 4)); 
+        satellites.push(new Satellite(500, -Math.PI / 4, -Math.PI / 8)); 
+        satellites.push(new Satellite(650, Math.PI / 2.2, 0)); 
+
+        // --- ANIMATION LOOP & OFF-SCREEN PAUSE ---
+        
+        let animationFrameId;
+        // FIX: Start as false so the observer triggers the first frame on load
+        let isAnimating = false; 
+
+        function animateCanvas() {
+            if (!isAnimating) return; // Immediately stop if paused
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            let cx = canvas.width / 2;
+            let cy = canvas.height / 2;
+
+            if (canvas.width < 768) {
+                cy = canvas.height * 0.30; 
+            }
+
+            ambientParticles.forEach(p => { p.update(); p.draw(ctx); });
+            waves.forEach(wave => { wave.update(); wave.draw(ctx, cx, cy); });
+            emPulses.forEach(pulse => { pulse.update(); pulse.draw(ctx, cx, cy); });
+            satellites.forEach(sat => { sat.update(); sat.draw(ctx, cx, cy); });
+            
+            animationFrameId = requestAnimationFrame(animateCanvas);
+        }
+
+        // Set up the Intersection Observer
+        const heroSection = document.querySelector('.hero-bg');
+        
+        // This watches the hero section. 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Wakes up the animation when visible
+                    if (!isAnimating) {
+                        isAnimating = true;
+                        animateCanvas(); 
+                    }
+                } else {
+                    // Puts it to sleep when out of view
+                    isAnimating = false;
+                    if (animationFrameId) {
+                        cancelAnimationFrame(animationFrameId); 
+                    }
+                }
+            });
+        }, { threshold: 0.01 });
+
+        // Start observing the hero section
+        if (heroSection) {
+            observer.observe(heroSection);
+        } else {
+            // Fallback just in case the class name changes
+            isAnimating = true;
+            animateCanvas(); 
+        }
+
+        /* ---------------------------------------------------
+           3. UI Interactions & Chart.js Config 
+           --------------------------------------------------- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            const chartCtx = document.getElementById('academicChart').getContext('2d');
+            
+            const data = {
+                labels: ['SSC (2022)', 'PUC (2024)', 'B.Tech (Current)'],
+                datasets: [{
+                    label: 'Normalized Score (%)',
+                    data: [96.5, 97.9, 87.1],
+                    borderColor: '#3b82f6', 
+                    backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#ffffff',
+                    pointBorderColor: '#3b82f6',
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    fill: true,
+                    tension: 0.4 
+                }]
+            };
+
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, 
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                            titleFont: { family: 'Inter, sans-serif', size: 13 },
+                            bodyFont: { family: 'Inter, sans-serif', size: 14, weight: 'bold' },
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    let raw = context.raw;
+                                    if(context.dataIndex === 0) return raw + '%';
+                                    if(context.dataIndex === 1) return (raw/10).toFixed(2) + ' CGPA (' + raw + '%)';
+                                    if(context.dataIndex === 2) return (raw/10).toFixed(2) + ' CGPA (' + raw + '%)';
+                                    return raw;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            min: 80, max: 100,
+                            ticks: { font: { family: 'Inter, sans-serif' }, color: '#64748b' },
+                            grid: { color: 'rgba(148, 163, 184, 0.1)', drawBorder: false }
+                        },
+                        x: {
+                            ticks: { font: { family: 'Inter, sans-serif', weight: '500' }, color: '#475569' },
+                            grid: { display: false, drawBorder: false }
+                        }
+                    },
+                    interaction: { intersect: false, mode: 'index' },
+                }
+            };
+
+            new Chart(chartCtx, config);
+        });
+
+    /* ---------------------------------------------------
+           4. Lightbox Gallery Logic 
+           --------------------------------------------------- */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(imageSrc) {
+            lightboxImg.src = imageSrc;
+            
+            // Remove hidden to put it in the DOM
+            lightbox.classList.remove('hidden');
+            
+            // Lock the background page from scrolling
+            document.body.style.overflow = 'hidden'; 
+            
+            // A tiny delay ensures the CSS transition triggers properly after removing 'hidden'
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            // Trigger the fade out and scale down animation
+            lightbox.classList.add('opacity-0');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            
+            // Restore background scrolling
+            document.body.style.overflow = ''; 
+            
+            // Wait for the CSS transition to finish (300ms) before fully hiding it
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightboxImg.src = ''; // Clear source to prevent ghost flashes on next open
+            }, 300);
+        }
+
+        // Feature: Close lightbox when clicking the dark background outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Feature: Close lightbox when hitting the Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+                closeLightbox();
+            }
+        });    
+    </script>
+</body>
+</html>
