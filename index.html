@@ -94,7 +94,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-slate-50 dark:bg-darkbase rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div class="scroll-reveal bg-slate-50 dark:bg-darkbase rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                     <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-6 flex items-center">
                         <i class="fa-solid fa-book-open mr-3 text-primary-500"></i> Key Academic Subjects
                     </h3>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 
-                <div class="bg-slate-50 dark:bg-darkbase rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div class="scroll-reveal scroll-reveal-delay-1 bg-slate-50 dark:bg-darkbase rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                     <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-6 flex items-center">
                         <i class="fa-solid fa-microchip mr-3 text-primary-500"></i> Technical Arsenal
                     </h3>
@@ -209,7 +209,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <div class="bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
+                <div class="scroll-reveal bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
                     <div class="p-8 flex-grow">
                         <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6">
                             <i class="fa-solid fa-laptop-code text-2xl text-primary-600 dark:text-primary-400"></i>
@@ -232,7 +232,7 @@
                     </div>
                 </div>
 
-                <div class="bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
+                <div class="scroll-reveal scroll-reveal-delay-1 bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
                     <div class="p-8 flex-grow">
                         <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6">
                             <i class="fa-solid fa-microchip text-2xl text-primary-600 dark:text-primary-400"></i>
@@ -255,7 +255,7 @@
                     </div>
                 </div>
 
-                <div class="bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
+                <div class="scroll-reveal scroll-reveal-delay-2 bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
                     <div class="p-8 flex-grow">
                         <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6">
                             <i class="fa-solid fa-satellite-dish text-2xl text-primary-600 dark:text-primary-400"></i>
@@ -292,7 +292,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-white dark:bg-darkcard p-8 rounded-2xl border-l-4 border-primary-500 shadow-md hover:shadow-xl transition-shadow">
+            <div class="scroll-reveal bg-white dark:bg-darkcard p-8 rounded-2xl border-l-4 border-primary-500 shadow-md hover:shadow-xl transition-shadow">
                 <div class="flex items-start">
                     <div class="bg-primary-50 dark:bg-primary-900/30 p-3 rounded-full mr-5">
                         <i class="fa-solid fa-medal text-2xl text-primary-600 dark:text-primary-400"></i>
@@ -305,7 +305,7 @@
                 </div>
             </div>
 
-            <div class="bg-white dark:bg-darkcard p-8 rounded-2xl border-l-4 border-primary-500 shadow-md hover:shadow-xl transition-shadow">
+            <div class="scroll-reveal scroll-reveal-delay-1 bg-white dark:bg-darkcard p-8 rounded-2xl border-l-4 border-primary-500 shadow-md hover:shadow-xl transition-shadow">
                 <div class="flex items-start">
                     <div class="bg-primary-50 dark:bg-primary-900/30 p-3 rounded-full mr-5">
                         <i class="fa-solid fa-trophy text-2xl text-primary-600 dark:text-primary-400"></i>
@@ -328,19 +328,21 @@
             </p>
         </div>
             <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 pt-4 px-4 -mx-4 sm:mx-0 sm:px-0 hide-scrollbar cursor-grab active:cursor-grabbing">
-            <div onclick="openLightbox('./images/SGFI_STATE_TEAM.jpg')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group relative overflow-hidden rounded-xl shadow-md border border-slate-200 dark:border-academic-800 h-64">
+            <div onclick="openLightbox('./images/SGFI_STATE_TEAM.jpg')" class="img-caption-wrapper flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group relative overflow-hidden rounded-xl shadow-md border border-slate-200 dark:border-academic-800 h-64 cursor-pointer">
                 <img src="./images/SGFI_STATE_TEAM.jpg" alt="SGFI STATE TEAM " class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <h4 class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">SGFI STATE TEAM</h4>
-                    <p class="text-slate-300 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Our SGFI Team for state-level Yoga competition.</p>
+                <div class="img-caption-overlay absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h4 class="img-caption-title text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">SGFI STATE TEAM</h4>
+                    <p class="img-caption-text text-slate-300 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Our SGFI Team for state-level Yoga competition.</p>
+                    <span class="mt-3 inline-flex items-center text-xs text-white/70"><i class="fa-solid fa-expand mr-1.5"></i> Tap to view full screen</span>
                 </div>
             </div>
 
-            <div onclick="openLightbox('./images/FINAL_SELECTED.jpg')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group relative overflow-hidden rounded-xl shadow-md border border-slate-200 dark:border-academic-800 h-64">
+            <div onclick="openLightbox('./images/FINAL_SELECTED.jpg')" class="img-caption-wrapper flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group relative overflow-hidden rounded-xl shadow-md border border-slate-200 dark:border-academic-800 h-64 cursor-pointer">
                 <img src="./images/FINAL_SELECTED.jpg" alt="NATIONAL SELECTED TEAM TEAM" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <h4 class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">FINAL SELECTED MEMBERS</h4>
-                    <p class="text-slate-300 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Final selected members for National competition, SGFI Yoga. </p>
+                <div class="img-caption-overlay absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h4 class="img-caption-title text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">FINAL SELECTED MEMBERS</h4>
+                    <p class="img-caption-text text-slate-300 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Final selected members for National competition, SGFI Yoga.</p>
+                    <span class="mt-3 inline-flex items-center text-xs text-white/70"><i class="fa-solid fa-expand mr-1.5"></i> Tap to view full screen</span>
                 </div>
             </div>
 
@@ -362,7 +364,7 @@
             </div>
 
             <div class="space-y-6">
-                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+                <div class="scroll-reveal bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white">State-Level Team Manager <span class="text-primary-500 font-normal px-2">|</span> SGFI Yoga</h3>
                         <span class="text-sm font-bold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 mt-2 md:mt-0 inline-block w-max">2024</span>
@@ -373,7 +375,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+                <div class="scroll-reveal scroll-reveal-delay-1 bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white">Student Representative <span class="text-primary-500 font-normal px-2">|</span> Helping Hands NGO</h3>
                         <span class="text-sm font-bold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 mt-2 md:mt-0 inline-block w-max">2024 - Present</span>
@@ -384,7 +386,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+                <div class="scroll-reveal scroll-reveal-delay-2 bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white">Volunteer <span class="text-primary-500 font-normal px-2">|</span> National Service Scheme (NSS)</h3>
                         <span class="text-sm font-bold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 mt-2 md:mt-0 inline-block w-max">2023 - 2025</span>

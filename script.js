@@ -497,4 +497,23 @@ document.addEventListener('DOMContentLoaded', () => {
             closeLightbox();
         }
     });
+
+    /* ---------------------------------------------------
+       5. Scroll-Reveal Animations
+       Adds the 'visible' class to .scroll-reveal elements
+       as they enter the viewport during scrolling.
+       --------------------------------------------------- */
+    const revealEls = document.querySelectorAll('.scroll-reveal');
+    if (revealEls.length > 0) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target); // animate once
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealEls.forEach(el => revealObserver.observe(el));
+    }
 });
