@@ -4,19 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abdul Jabbar Khan | Academic Portfolio</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%234282B1%22/><text x=%2250%22 y=%2272%22 font-family=%22Georgia, serif%22 font-size=%2255%22 font-weight=%22bold%22 fill=%22%23EAE5D9%22 text-anchor=%22middle%22>JK</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23E8EBF7%22 stroke=%22%23A89BF2%22 stroke-width=%228%22/><text x=%2250%22 y=%2272%22 font-family=%22system-ui, sans-serif%22 font-size=%2255%22 font-weight=%22900%22 fill=%22%23050505%22 text-anchor=%22middle%22>JK</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        darkbase: '#0f172a', 
+                        darkcard: '#1e293b', 
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-50 dark:bg-darkbase text-slate-800 dark:text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-primary-500 selection:text-white transition-colors duration-300">
+<body class="bg-slate-100 dark:bg-darkbase text-slate-800 dark:text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-primary-500 selection:text-white transition-colors duration-300">
     <nav class="fixed w-full bg-white/80 dark:bg-darkbase/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-50 shadow-sm transition-colors duration-300">        
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <span class="font-bold text-xl tracking-tight text-slate-900 dark:text-white">A.J. Khan</span>
+                    <span class="font-bold text-xl tracking-tight text-slate-900 dark:text-white">A.Jabbar Khan</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300">
                     <a href="#education" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Education</a>
@@ -39,8 +66,8 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-darkcard border-b border-slate-200 dark:border-slate-800 shadow-lg">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <div id="mobile-menu" class="md:hidden bg-white dark:bg-darkcard shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-sm font-medium text-slate-600 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
                 <a href="#education" class="block px-3 py-3 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary-600 dark:hover:text-primary-400">Education</a>
                 <a href="#projects" class="block px-3 py-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary-600 dark:hover:text-primary-400">Projects</a>
                 <a href="#achievements" class="block px-3 py-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary-600 dark:hover:text-primary-400">Achievements</a>
@@ -79,9 +106,6 @@
                     <i class="fa-brands fa-github mr-2 text-lg"></i> GitHub
                 </a>
             </div>
-            <div class="mt-8 text-sm font-medium text-slate-600 dark:text-slate-400 bg-white/50 dark:bg-slate-800/50 inline-block px-4 py-1.5 rounded-full backdrop-blur-sm border border-white/30 dark:border-slate-600/30">
-                <i class="fa-solid fa-phone mr-1"></i> +91-7981994719
-            </div>
         </div>
     </section>
 
@@ -94,7 +118,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-slate-50 dark:bg-darkbase rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div class="bg-slate-50 dark:bg-darkbase rounded-xl p-8 border border-slate-300 dark:border-slate-600 shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                     <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-6 flex items-center">
                         <i class="fa-solid fa-book-open mr-3 text-primary-500"></i> Key Academic Subjects
                     </h3>
@@ -108,7 +132,7 @@
                     </div>
                 </div>
                 
-                <div class="bg-slate-50 dark:bg-darkbase rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div class="bg-slate-50 dark:bg-darkbase rounded-xl p-8 border border-slate-300 dark:border-slate-600 shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                     <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-6 flex items-center">
                         <i class="fa-solid fa-microchip mr-3 text-primary-500"></i> Technical Arsenal
                     </h3>
@@ -142,7 +166,7 @@
                     <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-darkbase bg-primary-500 text-white shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-110">
                         <i class="fa-solid fa-graduation-cap"></i>
                     </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-darkcard p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition hover:shadow-lg">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-darkcard p-6 rounded-xl border border-slate-300 dark:border-slate-600 shadow-md transition hover:shadow-lg">
                         <div class="flex items-center justify-between mb-2">
                             <h3 class="font-bold text-lg text-slate-900 dark:text-white">B.Tech ECE</h3>
                             <span class="text-xs font-bold text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 px-2 py-1 rounded">Exp. 2028</span>
@@ -158,7 +182,7 @@
                     <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-darkbase bg-slate-400 dark:bg-slate-600 text-white shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-110">
                         <i class="fa-solid fa-school"></i>
                     </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-darkcard p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition hover:shadow-lg">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-darkcard p-6 rounded-xl border border-slate-300 dark:border-slate-600 shadow-md transition hover:shadow-lg">
                         <div class="flex items-center justify-between mb-2">
                             <h3 class="font-bold text-lg text-slate-900 dark:text-white">Pre-University (MPC)</h3>
                             <span class="text-xs font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">2022 - 2024</span>
@@ -174,7 +198,7 @@
                     <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-darkbase bg-slate-400 dark:bg-slate-600 text-white shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-110">
                         <i class="fa-solid fa-building"></i>
                     </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-darkcard p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition hover:shadow-lg">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-darkcard p-6 rounded-xl border border-slate-300 dark:border-slate-600 shadow-md transition hover:shadow-lg">
                         <div class="flex items-center justify-between mb-2">
                             <h3 class="font-bold text-lg text-slate-900 dark:text-white">SSC</h3>
                             <span class="text-xs font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">2021 - 2022</span>
@@ -188,7 +212,7 @@
 
             </div>
 
-            <div class="bg-white dark:bg-darkcard p-6 md:p-8 rounded-2xl shadow-md border border-slate-200 dark:border-slate-700 transition">
+            <div class="bg-white dark:bg-darkcard p-6 md:p-8 rounded-2xl shadow-md border border-slate-300 dark:border-slate-600 transition">
                 <h3 class="text-center text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">Performance Consistency</h3>
                 <div class="chart-container">
                     <canvas id="academicChart"></canvas>
@@ -199,19 +223,25 @@
 
     <section id="projects" class="py-20 bg-white dark:bg-darkcard border-y border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12">
-                <h2 class="text-3xl font-bold text-slate-900 dark:text-white font-serif mb-2">Independent Projects & Research</h2>
-                <div class="h-1 w-20 bg-primary-500 mt-4 mb-4 rounded-full"></div>
-                <p class="text-slate-600 dark:text-slate-400 max-w-3xl text-sm">
-                    This section outlines practical applications of my theoretical knowledge. It highlights my ability to bridge hardware and software, manage low-level memory, and utilize object-oriented programming for complex mathematical and physical simulations.
-                </p>
+            <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white font-serif mb-2">Independent Projects & Research</h2>
+                    <div class="h-1 w-20 bg-primary-500 mt-4 mb-4 rounded-full"></div>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl text-sm">
+                        This section outlines practical applications of my theoretical knowledge, from hardware interfacing to complex mathematical simulations.
+                    </p>
+                </div>
+                <div class="hidden md:flex items-center text-sm font-bold text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 px-4 py-2 rounded-full border border-primary-200 dark:border-primary-800 animate-pulse shadow-sm">
+                    <span class="mr-2">Scroll to explore</span>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 pt-4 px-4 -mx-4 sm:mx-0 sm:px-0 hide-scrollbar cursor-grab active:cursor-grabbing items-stretch">
                 
-                <div class="bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
+                <div class="flex-none w-[85vw] sm:w-[45vw] md:w-96 snap-center bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-600 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-auto">
                     <div class="p-8 flex-grow">
-                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6 shrink-0">
                             <i class="fa-solid fa-laptop-code text-2xl text-primary-600 dark:text-primary-400"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">3D Animation for Physics</h3>
@@ -221,10 +251,10 @@
                             <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Demonstrated deep proficiency in vector calculus, classical kinematics modelling, and OOP for scientific visualization.</li>
                         </ul>
                     </div>
-                    <div class="px-8 py-5 bg-white dark:bg-darkcard border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                    <div class="px-8 py-5 bg-white dark:bg-darkcard border-t border-slate-300 dark:border-slate-600 flex justify-between items-center shrink-0">
                         <div class="flex gap-2">
-                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">Python</span>
-                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">VPython</span>
+                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-300 dark:border-slate-600">Python</span>
+                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-300 dark:border-slate-600">VPython</span>
                         </div>
                         <a href="https://github.com/CodingMango/Learn-VPython" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 text-sm font-bold flex items-center transition-colors">
                             Repo <i class="fa-solid fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
@@ -232,9 +262,9 @@
                     </div>
                 </div>
 
-                <div class="bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
+                <div class="flex-none w-[85vw] sm:w-[45vw] md:w-96 snap-center bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-600 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-auto">
                     <div class="p-8 flex-grow">
-                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6 shrink-0">
                             <i class="fa-solid fa-microchip text-2xl text-primary-600 dark:text-primary-400"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Cryptographic Morse Decoder</h3>
@@ -244,7 +274,7 @@
                             <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Demonstrated advanced capabilities in low-level memory management via C++.</li>
                         </ul>
                     </div>
-                    <div class="px-8 py-5 bg-white dark:bg-darkcard border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                    <div class="px-8 py-5 bg-white dark:bg-darkcard border-t border-slate-200 dark:border-slate-800 flex justify-between items-center shrink-0">
                         <div class="flex gap-2">
                             <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">C++</span>
                             <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">Hardware</span>
@@ -255,9 +285,9 @@
                     </div>
                 </div>
 
-                <div class="bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
+                <div class="flex-none w-[85vw] sm:w-[45vw] md:w-96 snap-center bg-slate-50 dark:bg-darkbase rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-600 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-auto">
                     <div class="p-8 flex-grow">
-                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6 shrink-0">
                             <i class="fa-solid fa-satellite-dish text-2xl text-primary-600 dark:text-primary-400"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Morse Encoder</h3>
@@ -267,10 +297,10 @@
                             <li class="relative pl-5 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-primary-500 before:rounded-full">Further solidified understanding of C++ interfacing with physical electronic components.</li>
                         </ul>
                     </div>
-                    <div class="px-8 py-5 bg-white dark:bg-darkcard border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                    <div class="px-8 py-5 bg-white dark:bg-darkcard border-t border-slate-300 dark:border-slate-600 flex justify-between items-center shrink-0">
                         <div class="flex gap-2">
-                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">C++</span>
-                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">Hardware</span>
+                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-300 dark:border-slate-600">C++</span>
+                            <span class="text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded border border-slate-300 dark:border-slate-600">Hardware</span>
                         </div>
                         <a href="https://github.com/CodingMango/Morse_Encoder" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 text-sm font-bold flex items-center transition-colors">
                             Repo <i class="fa-solid fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
@@ -278,6 +308,12 @@
                     </div>
                 </div>
 
+            </div>
+
+            <div class="text-center mt-6 md:hidden">
+                <span class="inline-flex items-center text-xs font-bold text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 px-4 py-2 rounded-full border border-primary-200 dark:border-primary-800 uppercase tracking-widest animate-pulse shadow-sm">
+                    <i class="fa-solid fa-arrows-left-right mr-2 text-lg"></i> Swipe to explore
+                </span>
             </div>
         </div>
     </section>
@@ -320,34 +356,135 @@
         </div>
     </section>
 
-    <section id="sports" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200 dark:border-academic-800 transition-colors duration-300">
+    <section id="sports" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div class="mb-10 text-center">
-            <h2 class="text-3xl font-bold text-academic-900 dark:text-white font-serif mb-2">Sports & Athletics</h2>
-            <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm">
-                Demonstrating discipline, teamwork, and resilience through competitive sports at the SGFI Yoga State Level Competition.
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white font-serif mb-2">Sports & Wellness</h2>
+            <div class="h-1 w-20 bg-primary-500 mx-auto mt-4 mb-4 rounded-full"></div>
+            <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm leading-relaxed">
+                Demonstrating discipline, focus, and resilience through competitive athletics, highlighted by representing Krishna district at the <strong>2023 Under-19 SGFI Yoga State Level Competition</strong> held in Veeravasaram, West Godavari.
             </p>
         </div>
-            <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 pt-4 px-4 -mx-4 sm:mx-0 sm:px-0 hide-scrollbar cursor-grab active:cursor-grabbing">
-            <div onclick="openLightbox('./images/SGFI_STATE_TEAM.jpg')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group relative overflow-hidden rounded-xl shadow-md border border-slate-200 dark:border-academic-800 h-64">
-                <img src="./images/SGFI_STATE_TEAM.jpg" alt="SGFI STATE TEAM " class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <h4 class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">SGFI STATE TEAM</h4>
-                    <p class="text-slate-300 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Our SGFI Team for state-level Yoga competition.</p>
+
+        <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 pt-4 px-4 -mx-4 sm:mx-0 sm:px-0 hide-scrollbar cursor-grab active:cursor-grabbing items-stretch">
+            
+            <div onclick="openLightbox('./images/SGFI_STATE_TEAM.jpg', 'Under-19 SGFI State Team', 'Our team preparing for the rigorous state-level Yoga competition in Veeravasaram.')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group cursor-pointer bg-white dark:bg-darkcard rounded-2xl border border-slate-300 dark:border-slate-600 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-auto">
+                <div class="relative h-64 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+                    <img src="./images/SGFI_STATE_TEAM.jpg" alt="SGFI STATE TEAM" class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300"></div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-start">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">U-19 State Team (2023)</h4>
+                        <i class="fa-solid fa-expand text-slate-400 group-hover:text-primary-500 transition-colors shrink-0 ml-2"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Our team preparing for the rigorous state-level Yoga competition in Veeravasaram, West Godavari.</p>
                 </div>
             </div>
 
-            <div onclick="openLightbox('./images/FINAL_SELECTED.jpg')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group relative overflow-hidden rounded-xl shadow-md border border-slate-200 dark:border-academic-800 h-64">
-                <img src="./images/FINAL_SELECTED.jpg" alt="NATIONAL SELECTED TEAM TEAM" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <h4 class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">FINAL SELECTED MEMBERS</h4>
-                    <p class="text-slate-300 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Final selected members for National competition, SGFI Yoga. </p>
+            <div onclick="openLightbox('./images/FINAL_SELECTED.jpg', 'National Qualifiers', 'Final selected members advancing to the National SGFI Yoga Championship.')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group cursor-pointer bg-white dark:bg-darkcard rounded-2xl border border-slate-300 dark:border-slate-600 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-auto">
+                <div class="relative h-64 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+                    <img src="./images/FINAL_SELECTED.jpg" alt="NATIONAL SELECTED TEAM" class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300"></div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-start">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">National Qualifiers</h4>
+                        <i class="fa-solid fa-expand text-slate-400 group-hover:text-primary-500 transition-colors shrink-0 ml-2"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Final selected members advancing to the National SGFI Yoga Championship.</p>
                 </div>
             </div>
 
+            <div onclick="openLightbox('./images/POORNA_MATSYENDRASANA.png', 'POORNA MATSYENDRASANA', 'Performing one of the Group-A Asanas. We have to hold this position for 2 minutes 30 seconds.')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group cursor-pointer bg-white dark:bg-darkcard rounded-2xl border border-slate-300 dark:border-slate-600 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-auto">
+                <div class="relative h-64 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+                    <img src="./images/POORNA_MATSYENDRASANA.png" alt="NATIONAL SELECTED TEAM" class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300"></div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-start">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">POORNA MATSYENDRASANA</h4>
+                        <i class="fa-solid fa-expand text-slate-400 group-hover:text-primary-500 transition-colors shrink-0 ml-2"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Performing one of the Group-A Asanas. We have to hold this position for 2 minutes 30 seconds.</p>
+                </div>
             </div>
+
+            <div onclick="openLightbox('./images/UTTANA_PADASANA.png', 'UTTANA PADASANA', 'Performing one of the Group-A Asanas. We have to hold this position for 2 minutes 30 seconds.')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group cursor-pointer bg-white dark:bg-darkcard rounded-2xl border border-slate-300 dark:border-slate-600 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-auto">
+                <div class="relative h-64 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+                    <img src="./images/UTTANA_PADASANA.png" alt="NATIONAL SELECTED TEAM" class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300"></div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-start">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">UTTANA PADASANA</h4>
+                        <i class="fa-solid fa-expand text-slate-400 group-hover:text-primary-500 transition-colors shrink-0 ml-2"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Performing one of the Group-A Asanas. We have to hold this position for 2 minutes 30 seconds.</p>
+                </div>
+            </div>
+
+            <div onclick="openLightbox('./images/KUKKUTASANA.png', 'KUKKUTASANA', 'Performing one of the Group-B Asanas. We have to hold this position for 30 seconds.')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group cursor-pointer bg-white dark:bg-darkcard rounded-2xl border border-slate-300 dark:border-slate-600 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-auto">
+                <div class="relative h-64 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+                    <img src="./images/KUKKUTASANA.png" alt="NATIONAL SELECTED TEAM" class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300"></div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-start">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">KUKKUTASANA</h4>
+                        <i class="fa-solid fa-expand text-slate-400 group-hover:text-primary-500 transition-colors shrink-0 ml-2"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Performing one of the Group-B Asanas. We have to hold this position for 30 seconds.</p>
+                </div>
+            </div>
+
+            <div onclick="openLightbox('./images/Asana_1.png', 'Group-C Asana', 'Performing one of the Group-C Asanas. We have to hold this position for 20 seconds. These Asanas are the difficult ones.')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group cursor-pointer bg-white dark:bg-darkcard rounded-2xl border border-slate-300 dark:border-slate-600 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-auto">
+                <div class="relative h-64 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+                    <img src="./images/Asana_1.png" alt="NATIONAL SELECTED TEAM" class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300"></div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-start">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Group-C Asana</h4>
+                        <i class="fa-solid fa-expand text-slate-400 group-hover:text-primary-500 transition-colors shrink-0 ml-2"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Performing one of the Group-C Asanas. We have to hold this position for 20 seconds. These Asanas are the difficult ones.</p>
+                </div>
+            </div>
+
+            <div onclick="openLightbox('./images/Asana_2.png', 'Group-C Asana', 'Performing one of the Group-C Asanas. We have to hold this position for 20 seconds. These Asanas are the difficult ones.')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group cursor-pointer bg-white dark:bg-darkcard rounded-2xl border border-slate-300 dark:border-slate-600 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-auto">
+                <div class="relative h-64 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+                    <img src="./images/Asana_2.png" alt="NATIONAL SELECTED TEAM" class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300"></div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-start">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Group-C Asana</h4>
+                        <i class="fa-solid fa-expand text-slate-400 group-hover:text-primary-500 transition-colors shrink-0 ml-2"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Performing one of the Group-C Asanas. We have to hold this position for 20 seconds. These Asanas are the difficult ones.</p>
+                </div>
+            </div>
+
+            <div onclick="openLightbox('./images/PADAHASTANA.png', 'PADAHASTASANA', 'Concluding with forward and backward bendings.')" class="flex-none w-[85vw] sm:w-[45vw] md:w-80 snap-center group cursor-pointer bg-white dark:bg-darkcard rounded-2xl border border-slate-300 dark:border-slate-600 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-auto">
+                <div class="relative h-64 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+                    <img src="./images/PADAHASTANA.png" alt="NATIONAL SELECTED TEAM" class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300"></div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-start">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">PADAHASTASANA</h4>
+                        <i class="fa-solid fa-expand text-slate-400 group-hover:text-primary-500 transition-colors shrink-0 ml-2"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Concluding with forward and backward bendings.</p>
+                </div>
+            </div>
+
+        </div>
         
-        <div class="text-center mt-2 md:hidden">
-            <span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-widest"><i class="fa-solid fa-arrows-left-right mr-1"></i> Swipe to explore</span>
+        <div class="text-center mt-6 md:hidden">
+            <span class="inline-flex items-center text-xs font-bold text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 px-4 py-2 rounded-full border border-primary-200 dark:border-primary-800 uppercase tracking-widest animate-pulse shadow-sm">
+                <i class="fa-solid fa-arrows-left-right mr-2 text-lg"></i> Swipe to explore
+            </span>
         </div>
     </section>
 
@@ -362,7 +499,7 @@
             </div>
 
             <div class="space-y-6">
-                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-md border border-slate-300 dark:border-slate-600 hover:shadow-xl transition">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white">State-Level Team Manager <span class="text-primary-500 font-normal px-2">|</span> SGFI Yoga</h3>
                         <span class="text-sm font-bold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 mt-2 md:mt-0 inline-block w-max">2024</span>
@@ -373,7 +510,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-md border border-slate-300 dark:border-slate-600 hover:shadow-xl transition">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white">Student Representative <span class="text-primary-500 font-normal px-2">|</span> Helping Hands NGO</h3>
                         <span class="text-sm font-bold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 mt-2 md:mt-0 inline-block w-max">2024 - Present</span>
@@ -384,7 +521,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-md border border-slate-300 dark:border-slate-600 hover:shadow-xl transition">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white">Volunteer <span class="text-primary-500 font-normal px-2">|</span> National Service Scheme (NSS)</h3>
                         <span class="text-sm font-bold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 mt-2 md:mt-0 inline-block w-max">2023 - 2025</span>
@@ -435,14 +572,51 @@
         </div>
     </footer>
 
-    <div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md flex items-center justify-center opacity-0 transition-opacity duration-300">
-        <button onclick="closeLightbox()" class="absolute top-6 right-6 md:top-8 md:right-8 text-white/70 hover:text-white text-4xl focus:outline-none transition-colors" aria-label="Close Fullscreen">
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden bg-slate-900/95 dark:bg-black/95 backdrop-blur-md flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 p-4 sm:p-8">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 md:top-8 md:right-8 text-white/70 hover:text-white text-3xl md:text-4xl focus:outline-none transition-colors z-10" aria-label="Close Fullscreen">
             <i class="fa-solid fa-xmark"></i>
         </button>
-        <img id="lightbox-img" src="" alt="Fullscreen View" class="max-h-[90vh] max-w-[95vw] md:max-w-[90vw] object-contain rounded-lg shadow-2xl scale-95 transition-transform duration-300">
+        
+        <div class="w-full max-w-5xl flex flex-col items-center">
+            <img id="lightbox-img" src="" alt="Fullscreen View" class="max-h-[75vh] w-auto object-contain rounded-lg shadow-2xl scale-95 transition-transform duration-300">
+            
+            <div id="lightbox-text-container" class="mt-6 text-center opacity-0 transition-opacity duration-500 translate-y-4 max-w-2xl">
+                <h3 id="lightbox-title" class="text-white font-bold text-xl md:text-2xl mb-2 font-serif tracking-wide"></h3>
+                <p id="lightbox-desc" class="text-slate-300 text-sm md:text-base leading-relaxed"></p>
+            </div>
+        </div>
     </div>
 
+    <div id="desktop-toast" class="md:hidden fixed bottom-6 left-4 right-4 z-[100] translate-y-[150%] opacity-0 transition-all duration-700 ease-out">
+        <div class="relative bg-[#E8EBF7] backdrop-blur-xl border border-[#A89BF2]/40 shadow-[0_10px_30px_-10px_rgba(146,172,255,0.4)] rounded-2xl overflow-hidden flex flex-col">
+            
+            <div class="p-4 flex items-center gap-4">
+                
+                <div class="relative w-12 h-12 flex items-center justify-center shrink-0">
+                    <div class="absolute inset-0 bg-[#92ACFF]/20 rounded-full animate-ping" style="animation-duration: 3s;"></div>
+                    <div class="absolute inset-0 border-2 border-[#A89BF2]/60 rounded-full animate-[spin_3s_linear_infinite] border-t-transparent border-b-transparent"></div>
+                    <div class="absolute inset-1 border-2 border-[#92ACFF]/40 rounded-full animate-[spin_2s_linear_infinite_reverse] border-l-transparent border-r-transparent"></div>
+                    <i class="fa-solid fa-atom text-[#050505] text-xl"></i>
+                </div>
+
+                <div class="flex-grow">
+                    <h4 class="text-[#050505] text-sm font-bold tracking-wide mb-1">
+                        Black holes detected!
+                    </h4>
+                    <p class="text-[#050505]/80 text-xs leading-relaxed font-medium">
+                        Enable <strong class="text-[#92ACFF] font-extrabold tracking-wide">"Desktop Site"</strong> in your browser menu to unlock the live 3D physics engine!
+                    </p>
+                </div>
+
+                <button onclick="document.getElementById('desktop-toast').classList.add('translate-y-[150%]', 'opacity-0')" class="text-[#050505]/50 hover:text-[#050505] shrink-0 p-2 bg-[#A89BF2]/20 rounded-full backdrop-blur-sm transition-colors" aria-label="Dismiss">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="toast-progress" class="h-1 bg-gradient-to-r from-[#A89BF2] to-[#92ACFF] shadow-[0_0_8px_#92ACFF] w-full transform origin-left transition-transform ease-linear duration-[20000ms]"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
-
